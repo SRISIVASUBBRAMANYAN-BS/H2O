@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Quality Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="page active">
+        <div class="login-container">
+            <div class="login-header">
+                <h1>Water Quality Management System</h1>
+                <p>Statistical Survey & Disease Prevalence Prediction</p>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="userType">Login Type</label>
+                    <select id="userType" required>
+                        <option value="">Select Login Type</option>
+                        <option value="admin">Admin Login</option>
+                        <option value="dataentry">Data Entry Login</option>
+                        <option value="hospital">Hospital Login</option>
+                        <option value="publichealth">Public Health Login</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+                <div id="loginError" class="error-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminPage" class="page">
+        <div class="dashboard">
+            <header class="dashboard-header">
+                <h1>Admin Dashboard</h1>
+                <div class="user-info">
+                    <span id="adminWelcome"></span>
+                    <button onclick="logout()" class="logout-btn">Logout</button>
+                </div>
+            </header>
+            <div class="dashboard-content">
+                <div class="admin-tabs">
+                    <button class="tab-btn active" onclick="showAdminTab('users')">Manage Users</button>
+                    <button class="tab-btn" onclick="showAdminTab('locations')">Locations</button>
+                    <button class="tab-btn" onclick="showAdminTab('reports')">Reports</button>
+                </div>
+                
+                <div id="usersTab" class="tab-content active">
+                    <div class="user-management">
+                        <h3>Create Data Entry User</h3>
+                        <form id="createDataEntryForm" class="form">
+                            <input type="text" id="dataEntryName" placeholder="Full Name" required>
+                            <input type="text" id="dataEntryUsername" placeholder="Username" required>
+                            <input type="password" id="dataEntryPassword" placeholder="Password" required>
+                            <input type="email" id="dataEntryEmail" placeholder="Email" required>
+                            <input type="tel" id="dataEntryPhone" placeholder="Phone Number" required>
+                            <button type="submit">Create Data Entry User</button>
+                        </form>
+
+                        <h3>Create Hospital User</h3>
+                        <form id="createHospitalForm" class="form">
+                            <input type="text" id="hospitalName" placeholder="Hospital Name" required>
+                            <input type="text" id="hospitalUsername" placeholder="Username" required>
+                            <input type="password" id="hospitalPassword" placeholder="Password" required>
+                            <input type="text" id="hospitalLocation" placeholder="Location" required>
+                            <input type="text" id="hospitalVillage" placeholder="Village" required>
+                            <input type="text" id="hospitalTaluk" placeholder="Taluk" required>
+                            <input type="text" id="hospitalDistrict" placeholder="District" required>
+                            <input type="text" id="hospitalZone" placeholder="Zone" required>
+                            <input type="text" id="hospitalCountry" placeholder="Country" required>
+                            <button type="submit">Create Hospital User</button>
+                        </form>
+
+                        <div class="users-list">
+                            <h3>Registered Users</h3>
+                            <div id="usersList"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="locationsTab" class="tab-content">
+                    <div class="locations-overview">
+                        <h3>Location Statistics</h3>
+                        <div id="locationStats"></div>
+                    </div>
+                </div>
+
+                <div id="reportsTab" class="tab-content">
+                    <div class="reports-overview">
+                        <h3>System Reports</h3>
+                        <div id="systemReports"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Entry Dashboard -->
+    <div id="dataEntryPage" class="page">
+        <div class="dashboard">
+            <header class="dashboard-header">
+                <h1>Data Entry Dashboard</h1>
+                <div class="user-info">
+                    <span id="dataEntryWelcome"></span>
+                    <button onclick="logout()" class="logout-btn">Logout</button>
+                </div>
+            </header>
+            <div class="dashboard-content">
+                <div class="data-entry-tabs">
+                    <button class="tab-btn active" onclick="showDataEntryTab('locations')">Manage Locations</button>
+                    <button class="tab-btn" onclick="showDataEntryTab('waterquality')">Water Quality Data</button>
+                </div>
+
+                <div id="locationsDataTab" class="tab-content active">
+                    <h3>Add New Location</h3>
+                    <form id="addLocationForm" class="form">
+                        <input type="text" id="locationVillage" placeholder="Village" required>
+                        <input type="text" id="locationTaluk" placeholder="Taluk" required>
+                        <input type="text" id="locationDistrict" placeholder="District" required>
+                        <input type="text" id="locationZone" placeholder="Zone" required>
+                        <input type="text" id="locationCountry" placeholder="Country" required>
+                        <button type="submit">Add Location</button>
+                    </form>
+                    <div class="locations-list">
+                        <h3>Added Locations</h3>
+                        <div id="addedLocations"></div>
+                    </div>
+                </div>
+
+                <div id="waterqualityTab" class="tab-content">
+                    <h3>Water Quality Metrics</h3>
+                    <form id="waterQualityForm" class="form water-quality-form">
+                        <div class="form-section">
+                            <h4>Select Location</h4>
+                            <select id="waterQualityLocation" required>
+                                <option value="">Select Location</option>
+                            </select>
+                        </div>
+
+                        <div class="form-section">
+                            <h4>Physical Parameters</h4>
+                            <div class="form-grid">
+                                <input type="text" id="colour" placeholder="Colour">
+                                <input type="text" id="odour" placeholder="Odour">
+                                <input type="text" id="taste" placeholder="Taste">
+                                <input type="number" id="turbidity" placeholder="Turbidity (NTU)" step="0.01">
+                                <input type="number" id="ph" placeholder="pH" step="0.01">
+                                <input type="number" id="ec" placeholder="Electrical Conductivity (µS/cm)" step="0.01">
+                                <input type="number" id="tds" placeholder="Total Dissolved Solids (mg/L)" step="0.01">
+                                <input type="number" id="hardness" placeholder="Total Hardness (mg/L)" step="0.01">
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4>Chemical Parameters</h4>
+                            <div class="form-grid">
+                                <input type="number" id="alkalinity" placeholder="Alkalinity (mg/L)" step="0.01">
+                                <input type="number" id="chlorides" placeholder="Chlorides (mg/L)" step="0.01">
+                                <input type="number" id="sulphates" placeholder="Sulphates (mg/L)" step="0.01">
+                                <input type="number" id="nitrates" placeholder="Nitrates (mg/L)" step="0.01">
+                                <input type="number" id="fluoride" placeholder="Fluoride (mg/L)" step="0.01">
+                                <input type="number" id="iron" placeholder="Iron (mg/L)" step="0.01">
+                                <input type="number" id="calcium" placeholder="Calcium (mg/L)" step="0.01">
+                                <input type="number" id="magnesium" placeholder="Magnesium (mg/L)" step="0.01">
+                                <input type="number" id="sodium" placeholder="Sodium (mg/L)" step="0.01">
+                                <input type="number" id="potassium" placeholder="Potassium (mg/L)" step="0.01">
+                                <input type="number" id="manganese" placeholder="Manganese (mg/L)" step="0.01">
+                                <input type="number" id="ammonia" placeholder="Ammonia (mg/L)" step="0.01">
+                                <input type="number" id="dissolvedOxygen" placeholder="Dissolved Oxygen (mg/L)" step="0.01">
+                                <input type="number" id="bod" placeholder="BOD (mg/L)" step="0.01">
+                                <input type="number" id="cod" placeholder="COD (mg/L)" step="0.01">
+                                <input type="number" id="lead" placeholder="Lead (mg/L)" step="0.01">
+                                <input type="number" id="arsenic" placeholder="Arsenic (mg/L)" step="0.01">
+                                <input type="number" id="mercury" placeholder="Mercury (mg/L)" step="0.01">
+                                <input type="number" id="cadmium" placeholder="Cadmium (mg/L)" step="0.01">
+                                <input type="number" id="chromium" placeholder="Chromium (mg/L)" step="0.01">
+                                <input type="number" id="copper" placeholder="Copper (mg/L)" step="0.01">
+                                <input type="number" id="zinc" placeholder="Zinc (mg/L)" step="0.01">
+                                <input type="number" id="nickel" placeholder="Nickel (mg/L)" step="0.01">
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4>Biological Parameters</h4>
+                            <div class="form-grid">
+                                <input type="number" id="totalColiform" placeholder="Total Coliform (CFU/100 mL)" step="0.01">
+                                <input type="number" id="fecalColiform" placeholder="Fecal Coliform (CFU/100 mL)" step="0.01">
+                                <input type="text" id="pathogenicBacteria" placeholder="Pathogenic Bacteria">
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4>Optional Tests</h4>
+                            <div class="form-grid">
+                                <input type="number" id="pesticides" placeholder="Pesticides (µg/L)" step="0.01">
+                                <input type="number" id="detergents" placeholder="Detergents (mg/L)" step="0.01">
+                                <input type="number" id="oilGrease" placeholder="Oil & Grease (mg/L)" step="0.01">
+                                <input type="number" id="radioactive" placeholder="Radioactive Elements" step="0.01">
+                                <input type="number" id="sar" placeholder="Sodium Absorption Ratio" step="0.01">
+                            </div>
+                        </div>
+
+                        <button type="submit">Save Water Quality Data</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hospital Dashboard -->
+    <div id="hospitalPage" class="page">
+        <div class="dashboard">
+            <header class="dashboard-header">
+                <h1>Hospital Dashboard</h1>
+                <div class="user-info">
+                    <span id="hospitalWelcome"></span>
+                    <button onclick="logout()" class="logout-btn">Logout</button>
+                </div>
+            </header>
+            <div class="dashboard-content">
+                <h3>Patient Registration</h3>
+                <form id="patientForm" class="form patient-form">
+                    <div class="form-grid">
+                        <input type="text" id="patientName" placeholder="Patient Name" required>
+                        <select id="patientLocation" required>
+                            <option value="">Select Location</option>
+                        </select>
+                        <input type="number" id="patientAge" placeholder="Age" required>
+                        <select id="patientGender" required>
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <select id="patientBloodGroup" required>
+                            <option value="">Blood Group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                        <input type="text" id="patientCondition" placeholder="Condition/Diagnosis" required>
+                        <input type="number" id="patientHeight" placeholder="Height (cm)" step="0.1" required>
+                        <input type="number" id="patientWeight" placeholder="Weight (kg)" step="0.1" required>
+                        <input type="text" id="patientBMI" placeholder="BMI (Auto-calculated)" readonly>
+                        <input type="text" id="patientPressure" placeholder="Blood Pressure (e.g., 120/80)">
+                        <input type="number" id="patientSugar" placeholder="Sugar Level (mg/dL)" step="0.1">
+                        <textarea id="patientOthers" placeholder="Other Details"></textarea>
+                    </div>
+                    <button type="submit">Register Patient</button>
+                </form>
+
+                <div class="patients-list">
+                    <h3>Registered Patients</h3>
+                    <div id="patientsList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Public Health Dashboard -->
+    <div id="publicHealthPage" class="page">
+        <div class="dashboard">
+            <header class="dashboard-header">
+                <h1>Public Health Analytics</h1>
+                <div class="user-info">
+                    <span id="publicHealthWelcome"></span>
+                    <button onclick="logout()" class="logout-btn">Logout</button>
+                </div>
+            </header>
+            <div class="dashboard-content">
+                <div class="analytics-tabs">
+                    <button class="tab-btn active" onclick="showAnalyticsTab('overview')">Overview</button>
+                    <button class="tab-btn" onclick="showAnalyticsTab('zones')">Zone Analysis</button>
+                    <button class="tab-btn" onclick="showAnalyticsTab('hospitals')">Hospital Analysis</button>
+                    <button class="tab-btn" onclick="showAnalyticsTab('waterquality')">Water Quality Reports</button>
+                </div>
+
+                <div id="overviewAnalytics" class="tab-content active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>Total Zones</h3>
+                            <div class="stat-number" id="totalZones">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Total Hospitals</h3>
+                            <div class="stat-number" id="totalHospitals">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Total Patients</h3>
+                            <div class="stat-number" id="totalPatients">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Water Quality Tests</h3>
+                            <div class="stat-number" id="totalWaterTests">0</div>
+                        </div>
+                    </div>
+                    <div class="charts-container">
+                        <div class="chart-card">
+                            <canvas id="patientsChart"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <canvas id="waterQualityChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="zonesAnalytics" class="tab-content">
+                    <div class="zone-analysis">
+                        <h3>Zone-wise Analysis</h3>
+                        <select id="zoneSelector">
+                            <option value="">Select Zone</option>
+                        </select>
+                        <div id="zoneDetails"></div>
+                        <button onclick="downloadZoneReport()" class="download-btn">Download Zone Report</button>
+                    </div>
+                </div>
+
+                <div id="hospitalsAnalytics" class="tab-content">
+                    <div class="hospital-analysis">
+                        <h3>Hospital Analysis</h3>
+                        <div class="filter-controls">
+                            <select id="hospitalSelector">
+                                <option value="">Select Hospital</option>
+                            </select>
+                            <select id="timeFilter">
+                                <option value="daily">Daily</option>
+                                <option value="monthly">Monthly</option>
+                                <option value="yearly">Yearly</option>
+                            </select>
+                        </div>
+                        <div id="hospitalDetails"></div>
+                        <button onclick="downloadPatientReport()" class="download-btn">Download Patient Report</button>
+                    </div>
+                </div>
+
+                <div id="waterqualityAnalytics" class="tab-content">
+                    <div class="water-quality-analysis">
+                        <h3>Water Quality Analysis</h3>
+                        <div class="filter-controls">
+                            <select id="waterQualityZoneSelector">
+                                <option value="">Select Zone</option>
+                            </select>
+                        </div>
+                        <div id="waterQualityDetails"></div>
+                        <button onclick="downloadWaterQualityReport()" class="download-btn">Download Water Quality Report</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
