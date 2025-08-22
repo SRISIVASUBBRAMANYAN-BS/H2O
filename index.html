@@ -150,71 +150,113 @@
                             </select>
                         </div>
 
+                        <!-- Enhanced Physical Parameters section with all required fields -->
                         <div class="form-section">
                             <h4>Physical Parameters</h4>
                             <div class="form-grid">
-                                <input type="text" id="colour" placeholder="Colour">
-                                <input type="text" id="odour" placeholder="Odour">
-                                <input type="text" id="taste" placeholder="Taste">
-                                <input type="number" id="turbidity" placeholder="Turbidity (NTU)" step="0.01">
-                                <input type="number" id="ph" placeholder="pH" step="0.01">
-                                <input type="number" id="ec" placeholder="Electrical Conductivity (µS/cm)" step="0.01">
-                                <input type="number" id="tds" placeholder="Total Dissolved Solids (mg/L)" step="0.01">
-                                <input type="number" id="hardness" placeholder="Total Hardness (mg/L)" step="0.01">
+                                <input type="text" id="colour" placeholder="Colour" required>
+                                <input type="text" id="odour" placeholder="Odour" required>
+                                <input type="text" id="taste" placeholder="Taste" required>
+                                <input type="number" id="turbidity" placeholder="Turbidity (NTU)" step="0.01" required>
+                                <input type="number" id="ph" placeholder="pH" step="0.01" required>
+                                <input type="number" id="ec" placeholder="Electrical Conductivity (µS/cm)" step="0.01" required>
+                                <input type="number" id="tds" placeholder="Total Dissolved Solids (mg/L)" step="0.01" required>
+                                <input type="number" id="hardness" placeholder="Total Hardness (mg/L)" step="0.01" required>
                             </div>
                         </div>
 
+                        <!-- Enhanced Chemical Parameters section with comprehensive heavy metals and nutrients -->
                         <div class="form-section">
                             <h4>Chemical Parameters</h4>
                             <div class="form-grid">
-                                <input type="number" id="alkalinity" placeholder="Alkalinity (mg/L)" step="0.01">
-                                <input type="number" id="chlorides" placeholder="Chlorides (mg/L)" step="0.01">
-                                <input type="number" id="sulphates" placeholder="Sulphates (mg/L)" step="0.01">
-                                <input type="number" id="nitrates" placeholder="Nitrates (mg/L)" step="0.01">
-                                <input type="number" id="fluoride" placeholder="Fluoride (mg/L)" step="0.01">
-                                <input type="number" id="iron" placeholder="Iron (mg/L)" step="0.01">
-                                <input type="number" id="calcium" placeholder="Calcium (mg/L)" step="0.01">
-                                <input type="number" id="magnesium" placeholder="Magnesium (mg/L)" step="0.01">
-                                <input type="number" id="sodium" placeholder="Sodium (mg/L)" step="0.01">
-                                <input type="number" id="potassium" placeholder="Potassium (mg/L)" step="0.01">
-                                <input type="number" id="manganese" placeholder="Manganese (mg/L)" step="0.01">
-                                <input type="number" id="ammonia" placeholder="Ammonia (mg/L)" step="0.01">
-                                <input type="number" id="dissolvedOxygen" placeholder="Dissolved Oxygen (mg/L)" step="0.01">
-                                <input type="number" id="bod" placeholder="BOD (mg/L)" step="0.01">
-                                <input type="number" id="cod" placeholder="COD (mg/L)" step="0.01">
-                                <input type="number" id="lead" placeholder="Lead (mg/L)" step="0.01">
-                                <input type="number" id="arsenic" placeholder="Arsenic (mg/L)" step="0.01">
-                                <input type="number" id="mercury" placeholder="Mercury (mg/L)" step="0.01">
-                                <input type="number" id="cadmium" placeholder="Cadmium (mg/L)" step="0.01">
-                                <input type="number" id="chromium" placeholder="Chromium (mg/L)" step="0.01">
-                                <input type="number" id="copper" placeholder="Copper (mg/L)" step="0.01">
-                                <input type="number" id="zinc" placeholder="Zinc (mg/L)" step="0.01">
-                                <input type="number" id="nickel" placeholder="Nickel (mg/L)" step="0.01">
+                                <input type="number" id="alkalinity" placeholder="Alkalinity (mg/L)" step="0.01" required>
+                                <input type="number" id="chlorides" placeholder="Chlorides (mg/L)" step="0.01" required>
+                                <input type="number" id="sulphates" placeholder="Sulphates (mg/L)" step="0.01" required>
+                                <input type="number" id="nitrates" placeholder="Nitrates (mg/L)" step="0.01" required>
+                                <input type="number" id="fluoride" placeholder="Fluoride (mg/L)" step="0.01" required>
+                                <input type="number" id="iron" placeholder="Iron (mg/L)" step="0.01" required>
+                                <input type="number" id="calcium" placeholder="Calcium (mg/L)" step="0.01" required>
+                                <input type="number" id="magnesium" placeholder="Magnesium (mg/L)" step="0.01" required>
+                                <input type="number" id="sodium" placeholder="Sodium (mg/L)" step="0.01" required>
+                                <input type="number" id="potassium" placeholder="Potassium (mg/L)" step="0.01" required>
+                                <input type="number" id="manganese" placeholder="Manganese (mg/L)" step="0.01" required>
+                                <input type="number" id="ammonia" placeholder="Ammonia (mg/L)" step="0.01" required>
+                                <input type="number" id="dissolvedOxygen" placeholder="Dissolved Oxygen (mg/L)" step="0.01" required>
+                                <input type="number" id="bod" placeholder="BOD (mg/L)" step="0.01" required>
+                                <input type="number" id="cod" placeholder="COD (mg/L)" step="0.01" required>
+                                <input type="number" id="lead" placeholder="Lead (mg/L)" step="0.001" required>
+                                <input type="number" id="arsenic" placeholder="Arsenic (mg/L)" step="0.001" required>
+                                <input type="number" id="mercury" placeholder="Mercury (mg/L)" step="0.001" required>
+                                <input type="number" id="cadmium" placeholder="Cadmium (mg/L)" step="0.001" required>
+                                <input type="number" id="chromium" placeholder="Chromium (mg/L)" step="0.001" required>
+                                <input type="number" id="copper" placeholder="Copper (mg/L)" step="0.01" required>
+                                <input type="number" id="zinc" placeholder="Zinc (mg/L)" step="0.01" required>
+                                <input type="number" id="nickel" placeholder="Nickel (mg/L)" step="0.001" required>
                             </div>
                         </div>
 
+                        <!-- Enhanced Biological Parameters section with specific pathogenic bacteria -->
                         <div class="form-section">
-                            <h4>Biological Parameters</h4>
+                            <h4>Biological / Microbiological Parameters</h4>
                             <div class="form-grid">
-                                <input type="number" id="totalColiform" placeholder="Total Coliform (CFU/100 mL)" step="0.01">
-                                <input type="number" id="fecalColiform" placeholder="Fecal Coliform (CFU/100 mL)" step="0.01">
-                                <input type="text" id="pathogenicBacteria" placeholder="Pathogenic Bacteria">
+                                <input type="number" id="totalColiform" placeholder="Total Coliform (CFU/100 mL)" step="1" required>
+                                <input type="number" id="fecalColiform" placeholder="Fecal Coliform (CFU/100 mL)" step="1" required>
+                                <select id="salmonella">
+                                    <option value="">Salmonella</option>
+                                    <option value="Present">Present</option>
+                                    <option value="Absent">Absent</option>
+                                </select>
+                                <select id="shigella">
+                                    <option value="">Shigella</option>
+                                    <option value="Present">Present</option>
+                                    <option value="Absent">Absent</option>
+                                </select>
+                                <textarea id="pathogenicBacteria" placeholder="Other Pathogenic Bacteria (specify)" required></textarea>
                             </div>
                         </div>
 
+                        <!-- Enhanced Optional Tests section with specific environmental contaminants -->
                         <div class="form-section">
-                            <h4>Optional Tests</h4>
+                            <h4>Other Optional Tests</h4>
                             <div class="form-grid">
-                                <input type="number" id="pesticides" placeholder="Pesticides (µg/L)" step="0.01">
-                                <input type="number" id="detergents" placeholder="Detergents (mg/L)" step="0.01">
-                                <input type="number" id="oilGrease" placeholder="Oil & Grease (mg/L)" step="0.01">
-                                <input type="number" id="radioactive" placeholder="Radioactive Elements" step="0.01">
-                                <input type="number" id="sar" placeholder="Sodium Absorption Ratio" step="0.01">
+                                <input type="number" id="pesticides" placeholder="Pesticides/Herbicides Residue (µg/L)" step="0.001" required>
+                                <input type="number" id="detergents" placeholder="Detergents (mg/L)" step="0.01" required>
+                                <input type="number" id="oilGrease" placeholder="Oil & Grease (mg/L)" step="0.01" required>
+                                <input type="number" id="sar" placeholder="Sodium Absorption Ratio" step="0.01" required>
+                                <textarea id="additionalTests" placeholder="Additional Tests and Remarks" required></textarea>
                             </div>
                         </div>
 
-                        <button type="submit">Save Water Quality Data</button>
+                        <!-- Added sampling information section -->
+                        <div class="form-section">
+                            <h4>Sampling Information</h4>
+                            <div class="form-grid">
+                                <input type="date" id="samplingDate" required>
+                                <input type="time" id="samplingTime" required>
+                                <input type="text" id="waterSource" placeholder="Water Source (Well, Borewell, River, etc.)" required>
+                                <input type="number" id="sampleDepth" placeholder="Sample Depth (meters)" step="0.1">
+                                <input type="number" id="waterTemperature" placeholder="Water Temperature (°C)" step="0.1">
+                                <textarea id="samplingRemarks" placeholder="Sampling Conditions and Remarks"></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Save Water Quality Data</button>
                     </form>
+
+                    <!-- Added water quality data display section -->
+                    <div class="water-quality-list">
+                        <h3>Recent Water Quality Tests</h3>
+                        <div class="filter-controls">
+                            <input type="date" id="filterStartDate" placeholder="Start Date">
+                            <input type="date" id="filterEndDate" placeholder="End Date">
+                            <select id="filterLocation">
+                                <option value="">All Locations</option>
+                            </select>
+                            <button onclick="filterWaterQualityData()" class="filter-btn">Filter</button>
+                            <button onclick="exportWaterQualityData()" class="export-btn">Export Data</button>
+                        </div>
+                        <div id="waterQualityDataList"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -312,24 +354,76 @@
                             <div class="stat-number" id="totalWaterTests">0</div>
                         </div>
                     </div>
+                    
+                    <!-- Added comprehensive filtering controls -->
+                    <div class="analytics-filters">
+                        <h4>Data Filters</h4>
+                        <div class="filter-grid">
+                            <input type="date" id="analyticsStartDate" placeholder="Start Date">
+                            <input type="date" id="analyticsEndDate" placeholder="End Date">
+                            <select id="analyticsZone">
+                                <option value="">All Zones</option>
+                            </select>
+                            <select id="analyticsHospital">
+                                <option value="">All Hospitals</option>
+                            </select>
+                            <select id="analyticsCondition">
+                                <option value="">All Conditions</option>
+                            </select>
+                            <button onclick="applyAnalyticsFilters()" class="filter-btn">Apply Filters</button>
+                            <button onclick="resetAnalyticsFilters()" class="reset-btn">Reset</button>
+                        </div>
+                    </div>
+
                     <div class="charts-container">
                         <div class="chart-card">
+                            <h4>Patient Registration Trends</h4>
                             <canvas id="patientsChart"></canvas>
                         </div>
                         <div class="chart-card">
+                            <h4>Water Quality Tests by Zone</h4>
                             <canvas id="waterQualityChart"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <h4>Disease Distribution</h4>
+                            <canvas id="diseaseChart"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <h4>Water Quality vs Health Correlation</h4>
+                            <canvas id="correlationChart"></canvas>
                         </div>
                     </div>
                 </div>
 
                 <div id="zonesAnalytics" class="tab-content">
                     <div class="zone-analysis">
-                        <h3>Zone-wise Analysis</h3>
-                        <select id="zoneSelector">
-                            <option value="">Select Zone</option>
-                        </select>
+                        <h3>Zone-wise Analysis & Demographic Comparison</h3>
+                        <div class="analysis-controls">
+                            <select id="zoneSelector">
+                                <option value="">Select Zone</option>
+                            </select>
+                            <select id="comparisonMetric">
+                                <option value="patients">Patient Count</option>
+                                <option value="waterquality">Water Quality</option>
+                                <option value="diseases">Disease Prevalence</option>
+                                <option value="demographics">Demographics</option>
+                            </select>
+                            <button onclick="generateZoneAnalysis()" class="analyze-btn">Generate Analysis</button>
+                        </div>
                         <div id="zoneDetails"></div>
-                        <button onclick="downloadZoneReport()" class="download-btn">Download Zone Report</button>
+                        <div class="zone-charts">
+                            <canvas id="zoneComparisonChart"></canvas>
+                        </div>
+                        <div class="download-controls">
+                            <h4>Download Options</h4>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" id="includePatients" checked> Patient Data</label>
+                                <label><input type="checkbox" id="includeWaterQuality" checked> Water Quality Data</label>
+                                <label><input type="checkbox" id="includeDemographics" checked> Demographics</label>
+                                <label><input type="checkbox" id="includeCharts" checked> Charts</label>
+                            </div>
+                            <button onclick="downloadCustomZoneReport()" class="download-btn">Download Custom Report</button>
+                        </div>
                     </div>
                 </div>
 
